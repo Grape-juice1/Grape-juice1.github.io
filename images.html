@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .slideshow-container {
+        position: relative;
+        width: 800px;
+        max-width: 100%;
+        margin: auto;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        display: none;
+      }
+
+      .slide.active {
+        display: block;
+        opacity: 1;
+      }
+
+      .slide img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 5px solid white;
+        box-sizing: border-box;
+      }
+
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: rgb(255, 255, 255);
+        font-size: 36px;
+        padding: 14px 20px;
+        min-width: 64px;
+        min-height: 64px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .prev {
+        left: 10px;
+      }
+      .next {
+        right: 10px;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 25vh;
+      margin: 0;
+      background: rgb(255, 138, 4);
+    "
+  >
+    <div class="slideshow-container">
+      <div class="slide active">
+        <img src="assets/IMG_7353.JPG" alt="schoolspirit" />
+      </div>
+      <div class="slide"><img src="assets/IMG_7346.JPG" alt="contrast" /></div>
+      <div class="slide"><img src="assets/IMG_7352.JPG" alt="beauty" /></div>
+      <div class="slide">
+        <img src="assets/IMG_7354.JPG" alt="anantsveiwoftheworld" />
+      </div>
+      <div class="slide"><img src="assets/IMG_7340.JPG" alt="shape" /></div>
+      <div class="slide"><img src="assets/IMG_7338.JPG" alt="texture" /></div>
+
+      <button class="prev" aria-label="Previous">❮</button>
+      <button class="next" aria-label="Next">❯</button>
+    </div>
+
+    <div style="position: absolute; top: 20px; left: 20px">
+      <a
+        href="index.html"
+        style="
+          color: white;
+          background: rgba(0, 0, 0, 0.6);
+          padding: 10px 16px;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: bold;
+        "
+        >← Home</a
+      >
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      let current = 0;
+
+      function showSlide(index) {
+        slides[current].classList.remove("active");
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add("active");
+      }
+
+      prevBtn.addEventListener("click", () => showSlide(current - 1));
+      nextBtn.addEventListener("click", () => showSlide(current + 1));
+
+      setInterval(() => showSlide(current + 1), 5000);
+    </script>
+  </body>
+</html>
